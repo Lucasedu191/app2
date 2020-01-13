@@ -1,4 +1,6 @@
 import { Oferta } from './shared/oferta.model'
+import { resolve } from 'url'
+import { promise } from 'protractor'
 
 export class OfertaService{
 
@@ -59,4 +61,30 @@ export class OfertaService{
         
         return this.ofertas
     }
+
+    public getOfertas2(): Promise<Oferta[]>{
+        return new Promise((resolve, reject) =>{
+            //console.log('sera que passou por aqui')
+            let deucerto =true
+            if(deucerto){
+                setTimeout(() => resolve(this.ofertas ), 3000 )
+                
+            }else{
+                reject( {codigoerro: 404, mensagem: 'servidor nao encontrado    xyz'})
+            }
+        })
+        .then((ofertas: Oferta[]) =>{
+            console.log('primeiro then')
+            return ofertas
+        })
+        .then((ofertas: Oferta[]) =>{
+            console.log('segundo then')
+            return new Promise((resolve2, reject2) =>{
+                setTimeout(() => {resolve2(ofertas)},3000)
+
+            })
+        })
+        
+    }
+
 }
