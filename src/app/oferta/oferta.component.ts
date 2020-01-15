@@ -10,7 +10,7 @@ import {Oferta} from '../shared/oferta.model'
 })
 export class OfertaComponent implements OnInit {
 
-  
+  public oferta: Oferta
 
   constructor( 
     private route: ActivatedRoute,
@@ -20,7 +20,8 @@ export class OfertaComponent implements OnInit {
   ngOnInit() {
     this.ofertasService.getOfertaPorId( this.route.snapshot.params['id'])
     .then((oferta: Oferta)=>{
-      console.log(oferta)
+      this.oferta = oferta
+      
     })  
   }
 
