@@ -88,8 +88,8 @@
 				{"url": "/assets/ofertas/6/img2.jpg"}
 			]
 		}	
-	],
-	"como-usar": [
+  ],
+  "como-usar": [
 		{
 			"id": 1,
 			"descricao": "Não é necessário agendar"
@@ -114,9 +114,8 @@
 			"id": 6,
 			"descricao": "Não é necessário agendar. Sujeito à fila."
 		}
-	],
-
-	"onde-fica": [
+  ],
+  "onde-fica": [
 		{
 			"id": 1,
 			"descricao": "Avenida João da Silva, 255, São Paulo - SP"
@@ -142,4 +141,5 @@
 			"descricao": "Estrada Maria das Graças, 12, Salvador - BA "
 		}
 	]
+
 }

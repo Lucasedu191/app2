@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import{OfertaService} from '../ofertas.service'
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, of } from 'rxjs';
 import {Oferta} from '../shared/oferta.model'
-import { switchMap, debounceTime, distinctUntilChanged } from 'rxjs/operators';
-import { of } from 'rxjs';
+import { switchMap, debounceTime, distinctUntilChanged, catchError } from 'rxjs/operators';
+
 import { environment } from 'src/environments/environment.prod';
 
 @Component({
@@ -15,6 +15,7 @@ import { environment } from 'src/environments/environment.prod';
 export class TopoComponent implements OnInit {
 
   public ofertas: Observable<Oferta[]>
+  public ofertas2: Oferta[]
   private subjectPesquisa: Subject<string> = new Subject <string>()
 
   constructor(private ofertasService: OfertaService) { }
@@ -26,12 +27,19 @@ export class TopoComponent implements OnInit {
     switchMap((termo : string) =>{
       console.log('requisição http para api')
       if(termo.trim() === ''){
-        return of<Oferta[]>([]);
+        return of<Oferta[]>([])
       }
       return this.ofertasService.pesquisaOfertas(termo)
-    })  
+    }),  
+    catchError((erro: any, observable : Observable<Oferta[]>) => {
+      console.log(erro)
+      return of<Oferta[]>([])
+    })
     );
-    this.ofertas.subscribe((ofertas: Oferta[]) => console.log(ofertas))
+    this.ofertas.subscribe((ofertas: Oferta[]) => {
+      console.log (ofertas)
+      this.ofertas2 =ofertas
+    })
   }
 
   public pesquisa(termoDaBusca: string): void {
