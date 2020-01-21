@@ -1,9 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import {ActivatedRoute} from '@angular/router'
-import {OfertaService} from '../ofertas.service'
-import {Oferta} from '../shared/oferta.model'
-
-
+import {ActivatedRoute} from '@angular/router';
+import {OfertaService} from '../ofertas.service';
+import {Oferta} from '../shared/oferta.model';
 
 @Component({
   selector: 'app-oferta',
